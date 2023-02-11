@@ -10,13 +10,31 @@
 
 <body>
 	<p>Codewars, task<br /> <a
-		href="https://www.codewars.com/kata/count-strings-in-objects">www.codewars.com/kata/count-strings-in-objects</a>
+			href="https://www.codewars.com/kata/count-strings-in-objects">www.codewars.com/kata/count-strings-in-objects</a>
 	</p>
 	<p>Press F12 for view Console</p>
 
 </body>
 <script id="mainScript">
-	console.log("code will be here")
+	function strCount(a) {
+		let counter = 0;
+		if (typeof a == "string") return 1;
+		if (typeof a == "object") {
+			for (key in a) counter += strCount(a[key])
+		}
+		return counter;
+	}
+
+
+	obj1 = {
+		first: "1",
+		second: "2",
+		third: false,
+		fourth: ["anytime", 2, 3, 4],
+		fifth: null
+	}
+
+	console.log(strCount(obj1))
 </script>
 
 </html>
