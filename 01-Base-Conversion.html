@@ -27,11 +27,22 @@
 		ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	};
 
-function convert(input, alphabetIn, alphaberOut){
+	function convert(inputStr, alphabetIn, alphaberOut) {
+		"use strict"
+		let result = 0
+		let baseIn = alphabetIn.length
+		let baseOut = alphaberOut.length
+		let inputInNumber = inputStr.split('')
+			.map((x, n) => +x * baseIn ** (inputStr.length - n - 1))
+			.reduce( (sum,x) => sum+x,  0)
 
-	return "convert"
-}
+		
+			
+		return inputInNumber;
+	}
 
+	console.log(convert("15", Alphabet.DECIMAL, Alphabet.BINARY));
+	console.log(convert("1010", Alphabet.BINARY, Alphabet.DECIMAL));
 </script>
 
 </html>
