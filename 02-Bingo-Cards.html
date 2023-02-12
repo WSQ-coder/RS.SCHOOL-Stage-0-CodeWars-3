@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<p>Codewars, task<br /> <a
+			href="www.codewars.com/kata/base-conversion">https://www.codewars.com/kata/base-conversion</a>
+	</p>
+	<p>Press F12 for view Console</p>
+
+</body>
+<script id="mainScript">
+	var Alphabet = {
+		BINARY: '01',
+		OCTAL: '01234567',
+		DECIMAL: '0123456789',
+		HEXA_DECIMAL: '0123456789abcdef',
+		ALPHA_LOWER: 'abcdefghijklmnopqrstuvwxyz',
+		ALPHA_UPPER: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+		ALPHA: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+		ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	};
+
+	function convert(inputStr, alphabetIn, alphaberOut) {
+		"use strict"
+		
+		console.log(inputStr, alphabetIn, alphaberOut)
+
+		let baseIn = alphabetIn.length
+		let baseOut = alphaberOut.length
+		let inputInNumber = inputStr.split('')
+			.map((x, n) => alphabetIn.indexOf(x) * baseIn ** (inputStr.length - n - 1))
+			.reduce((sum, x) => sum + x, 0);
+
+		let result = "", nextSymbol;
+		do {
+			nextSymbol = alphaberOut[inputInNumber % baseOut];
+			result = nextSymbol + result;
+			inputInNumber = Math.floor(inputInNumber / baseOut)
+		} while (inputInNumber > 0);
+
+		console.log(result)
+		
+		return result;
+	}
+
+	console.log(convert("15", Alphabet.DECIMAL, Alphabet.BINARY));
+	console.log(convert("1010", Alphabet.BINARY, Alphabet.DECIMAL));
+	console.log(convert("0", Alphabet.DECIMAL, Alphabet.ALPHA))
+	console.log(convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL))
+	
+</script>
+
+</html>
