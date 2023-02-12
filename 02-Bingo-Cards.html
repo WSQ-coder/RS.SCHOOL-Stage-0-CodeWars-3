@@ -16,45 +16,32 @@
 
 </body>
 <script id="mainScript">
-	var Alphabet = {
-		BINARY: '01',
-		OCTAL: '01234567',
-		DECIMAL: '0123456789',
-		HEXA_DECIMAL: '0123456789abcdef',
-		ALPHA_LOWER: 'abcdefghijklmnopqrstuvwxyz',
-		ALPHA_UPPER: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-		ALPHA: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-		ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-	};
+	function getCard() {
+		return []
+			.concat(getBlock('B', 1, 5))
+			.concat(getBlock('I', 16, 5))
+			.concat(getBlock('N', 31, 4))
+			.concat(getBlock('G', 46, 5))
+			.concat(getBlock('O', 61, 5))
+	}
 
-	function convert(inputStr, alphabetIn, alphaberOut) {
-		"use strict"
-		
-		console.log(inputStr, alphabetIn, alphaberOut)
+	function getBlock(symbol, from, count) {
+		let result = [], arr, elem;
+		arr = Array(15).fill(null).map((x, n) => from + n)
 
-		let baseIn = alphabetIn.length
-		let baseOut = alphaberOut.length
-		let inputInNumber = inputStr.split('')
-			.map((x, n) => alphabetIn.indexOf(x) * baseIn ** (inputStr.length - n - 1))
-			.reduce((sum, x) => sum + x, 0);
+		for (let i = 0; i < count; i++) {
+			elem = arr[~~(arr.length * Math.random())]
+			arr = arr.filter(x => x != elem)
+			result.push(symbol + elem)
+		}
 
-		let result = "", nextSymbol;
-		do {
-			nextSymbol = alphaberOut[inputInNumber % baseOut];
-			result = nextSymbol + result;
-			inputInNumber = Math.floor(inputInNumber / baseOut)
-		} while (inputInNumber > 0);
-
-		console.log(result)
-		
 		return result;
 	}
 
-	console.log(convert("15", Alphabet.DECIMAL, Alphabet.BINARY));
-	console.log(convert("1010", Alphabet.BINARY, Alphabet.DECIMAL));
-	console.log(convert("0", Alphabet.DECIMAL, Alphabet.ALPHA))
-	console.log(convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL))
+	console.log(getBlock("B", 1, 15))
+	console.log(getCard())
 	
+
 </script>
 
 </html>
