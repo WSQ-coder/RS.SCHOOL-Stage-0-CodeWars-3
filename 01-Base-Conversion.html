@@ -29,20 +29,32 @@
 
 	function convert(inputStr, alphabetIn, alphaberOut) {
 		"use strict"
-		let result = 0
+		
+		console.log(inputStr, alphabetIn, alphaberOut)
+
 		let baseIn = alphabetIn.length
 		let baseOut = alphaberOut.length
 		let inputInNumber = inputStr.split('')
-			.map((x, n) => +x * baseIn ** (inputStr.length - n - 1))
-			.reduce( (sum,x) => sum+x,  0)
+			.map((x, n) => alphabetIn.indexOf(x) * baseIn ** (inputStr.length - n - 1))
+			.reduce((sum, x) => sum + x, 0);
 
+		let result = "", nextSymbol;
+		do {
+			nextSymbol = alphaberOut[inputInNumber % baseOut];
+			result = nextSymbol + result;
+			inputInNumber = Math.floor(inputInNumber / baseOut)
+		} while (inputInNumber > 0);
+
+		console.log(result)
 		
-			
-		return inputInNumber;
+		return result;
 	}
 
 	console.log(convert("15", Alphabet.DECIMAL, Alphabet.BINARY));
 	console.log(convert("1010", Alphabet.BINARY, Alphabet.DECIMAL));
+	console.log(convert("0", Alphabet.DECIMAL, Alphabet.ALPHA))
+	console.log(convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL))
+	
 </script>
 
 </html>
