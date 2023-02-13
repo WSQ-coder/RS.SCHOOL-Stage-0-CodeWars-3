@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<p>Codewars, task<br /> <a href="https://www.codewars.com/kata/lottery-ticket" target="_blank"
+			rel="noopener noreferrer">www.codewars.com/kata/lottery-ticket</a>
+	</p>
+	<p>Press F12 for view Console</p>
+
+</body>
+<script id="mainScript">
+
+function bingo(ticket, win){
+  "use strict"
+  let countMiniWins = ticket.reduce( (sum, [str,code]) => sum + +str.includes( String.fromCharCode( code )), 0 );
+
+  if (countMiniWins >= win) {
+    return "Winner!"
+  } else {
+    return "Loser!"
+  }
+}
+
+
+
+
+
+
+</script>
+
+</html>
