@@ -17,14 +17,13 @@
 </body>
 <script id="mainScript">
 
-function bingo(ticket, win){
-  "use strict"
-  let countMiniWins = ticket.reduce( (sum, [str,code]) => sum + +str.includes( String.fromCharCode( code )), 0 );
+	function bingo(ticket, win) {
+		"use strict"
+		let countMiniWins = ticket.reduce((sum, [str, code]) => sum + +str.includes(String.fromCharCode(code)), 0);
 
-  if (countMiniWins >= win) return "Winner!";
-  
-	return "Loser!"
-}
+		if (countMiniWins >= win) return "Winner!";
+		return "Loser!"
+	}
 
 
 
